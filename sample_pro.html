@@ -1,0 +1,66 @@
+<style>
+.crossButton
+{
+cursor: pointer;
+float: right;
+font: bolder 17px arial,sans-serif;
+}
+
+.subDiv
+{
+float:left;
+padding:5px;
+border:1px solid #e4e5e9;
+border-radius:5px;
+width:500px;
+background-color:#e4e5e9;
+margin-top:2px;
+}
+</style>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<div style="float:left">
+<div style="float:left">
+<select id="product">
+<option value="UPS- UPS Express Saver">UPS- UPS Express Saver</option>
+<option value="Fedex- Dia">Fedex- Dia </option>
+</select>
+</div>
+<div style="float:left">
+<input type="text" id="amount" value=""></input>
+</div>
+<div style="float:left">
+<input type="button" id="enterButton" value="Agregar">
+</div>
+</div>
+
+<div id="mainContainor" style="float: left;margin-top: 35px;position: absolute;width: 800px;">
+
+</div>
+
+<script>
+$( "#enterButton" ).click(function() {
+				if ($("#amount").val() == "")
+				{
+						alert( "Please enter the value" );
+				}
+				else
+				{
+						a=""
+						a="<div class='subDiv' appendval='"+ $( "#product option:selected" ).text() + " " + $("#amount").val() +"'>"+ $( "#product option:selected" ).text() +  "- $" + $("#amount").val() + "<span class='crossButton' onclick='removeDiv(this)'>X</span></div>"
+						$("#mainContainor").append(a).hide().fadeIn(2000);
+				}
+});
+
+var finalValue=[]
+		function removeDiv(ids)
+		{
+				mainIds = $(ids).parent()
+				finalValue.push(mainIds.attr("appendval"))
+				mainIds.fadeOut(400, function(){
+				mainIds.remove();
+								alert(finalValue)
+				});
+			
+		}
+</script>
